@@ -13,7 +13,8 @@ const Nav = styled.nav`
     z-index: 100;
     position: fixed;
     width: 100%;
-    background: ${({ navbar }) => (navbar === true ? 'linear-gradient(90deg, rgb(66, 2, 194) 0%, rgb(0, 78, 194) 100%)' : 'transparent')};
+    background: ${({ navbar }) => (navbar === true ? 'linear-gradient(90deg, rgb(66, 2, 194) 0%, rgb(0, 78, 194) 100%)' : 'rgba(255,255,255,0)')};
+    backdrop-filter: blur(${({ navbar }) => (navbar === false ? '15px' : '0px')});
 `;
 const NavLink = css`
     color: #fff;
