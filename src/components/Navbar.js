@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, {css} from 'styled-components/macro'
 import {Link} from 'react-router-dom'
 import { menuData } from '../data/MenuData';
@@ -13,6 +13,7 @@ const Nav = styled.nav`
     z-index: 100;
     position: fixed;
     width: 100%;
+    background: ${({ navbar }) => (navbar === true ? 'linear-gradient(90deg, rgb(66, 2, 194) 0%, rgb(0, 78, 194) 100%)' : 'transparent')};
 `;
 const NavLink = css`
     color: #fff;
@@ -66,8 +67,20 @@ const NavBtn = styled.div`
 `;
 
 function Navbar({toggle}) {
+    const [navbar, setNavbar] = useState(false);
+
+    const changeBackground = () => {
+        if(window.scrollY >= 80) {
+            setNavbar(true);
+        } else {
+            setNavbar(false);
+        }
+    }
+
+    window.addEventListener('scroll', changeBackground);
+
     return (
-        <Nav>
+        <Nav navbar={navbar}>
             <Logo to="/">ELIXR</Logo>
             <MenuBars onClick={toggle}/>
             <NavMenu>
